@@ -2,6 +2,7 @@ package example.swagger.controller;
 
 import example.swagger.dto.controller.SwaggerRequest;
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -17,9 +18,12 @@ public class SwaggerController {
             @ApiResponse(responseCode = "200", description = "응답 성공"),
             @ApiResponse(responseCode = "400", description = "잘못된 요청")
     })
-    @GetMapping
-    public String getSwagger() {
-        return "swagger example";
+    @GetMapping("/{id}")
+    public String getSwagger(
+            @Parameter(name = "id", description = "사용자 ID", required = true, example = "1")
+            @PathVariable Long id
+    ) {
+        return "swagger example " + id;
     }
 
     @PostMapping
