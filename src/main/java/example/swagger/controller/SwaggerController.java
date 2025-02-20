@@ -8,6 +8,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,6 +34,7 @@ public class SwaggerController {
         return "swagger example " + id;
     }
 
+    @SecurityRequirement(name = "Bearer Authentication", scopes = "권한 범위")
     @PostMapping
     public String postSwagger(@RequestBody(description = "Swagger Post 요청 정보") SwaggerRequest swaggerRequest) {
         return "swagger example";
