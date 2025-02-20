@@ -3,6 +3,7 @@ package example.swagger.controller;
 import example.swagger.dto.controller.SwaggerRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
@@ -27,7 +28,7 @@ public class SwaggerController {
     }
 
     @PostMapping
-    public String postSwagger(@RequestBody SwaggerRequest swaggerRequest) {
+    public String postSwagger(@RequestBody(description = "Swagger Post 요청 정보") SwaggerRequest swaggerRequest) {
         return "swagger example";
     }
 }
