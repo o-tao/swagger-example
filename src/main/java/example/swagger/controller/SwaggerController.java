@@ -3,6 +3,8 @@ package example.swagger.controller;
 import example.swagger.dto.controller.SwaggerRequest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
@@ -16,8 +18,12 @@ public class SwaggerController {
 
     @Operation(summary = "Swagger 게시물 조회", description = "등록 된 Swagger 게시물을 조회합니다.")
     @ApiResponses({
-            @ApiResponse(responseCode = "200", description = "응답 성공"),
-            @ApiResponse(responseCode = "400", description = "잘못된 요청")
+            @ApiResponse(
+                    responseCode = "200",
+                    description = "응답 성공",
+                    content = @Content(mediaType = "application/json", schema = @Schema(implementation = SwaggerRequest.class))
+            ),
+            @ApiResponse(responseCode = "400", description = "잘못된 요청"),
     })
     @GetMapping("/{id}")
     public String getSwagger(
